@@ -10,6 +10,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
+using Swashbuckle.AspNetCore.Swagger;
 
 namespace _300954759_Kim__300825160_Perroni__GroupProject
 {
@@ -29,7 +30,17 @@ namespace _300954759_Kim__300825160_Perroni__GroupProject
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddMvc();
+            services.AddMvc( options => {
+                options.FormatterMappings.SetMediaTypeMappingForFormat("xml", "application/xml");
+                options.FormatterMappings.SetMediaTypeMappingForFormat("json", "application/json");
+            }).AddXmlSerializerFormatters();
+
+            // register swagger generator
+            services.AddSwaggerGen(options =>
+            {
+                options.SwaggerDoc("v1", new Info { Title = "My first API", Version = "v1" });
+            });
+
             // This line adds the DbContext and uses the connection string stored in the appsettings.json file
             services.AddDbContext<heeyeong_kenny_group_projectContext>(options => options.UseSqlServer(Configuration.GetConnectionString("connectionToRDS")));
             // This line adds the default AWS options as per configuration
@@ -45,6 +56,14 @@ namespace _300954759_Kim__300825160_Perroni__GroupProject
             }
 
             app.UseMvc();
+
+            // Enable middleware to serve generated swagger as a json endpoint
+            app.UseSwagger();
+
+            // Specify the swagger json endpoint
+            app.UseSwaggerUI(options => {
+                options.SwaggerEndpoint("/swagger/v1/swagger.json", "My first API");
+            });
         }
     }
 }

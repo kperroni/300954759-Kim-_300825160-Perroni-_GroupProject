@@ -6,6 +6,16 @@ namespace _300954759_Kim__300825160_Perroni__GroupProject.Models
 {
     public partial class heeyeong_kenny_group_projectContext : DbContext
     {
+
+        public heeyeong_kenny_group_projectContext()
+        {
+        }
+
+        public heeyeong_kenny_group_projectContext(DbContextOptions<heeyeong_kenny_group_projectContext> options)
+            : base(options)
+        {
+        }
+
         public virtual DbSet<Author> Author { get; set; }
         public virtual DbSet<Book> Book { get; set; }
         public virtual DbSet<Bookshelf> Bookshelf { get; set; }
