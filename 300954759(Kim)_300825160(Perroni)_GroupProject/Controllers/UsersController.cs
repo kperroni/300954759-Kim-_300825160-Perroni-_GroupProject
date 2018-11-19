@@ -41,5 +41,14 @@ namespace _300954759_Kim__300825160_Perroni__GroupProject.Controllers
             return user;
         }
 
+        // POST api/<controller>
+        [HttpPost]
+        public IActionResult Create(User user)
+        {
+            _context.User.Add(user);
+            _context.SaveChanges();
+
+            return CreatedAtRoute("GetUser", new { id = user.Id }, user);
+        }
     }
 }
