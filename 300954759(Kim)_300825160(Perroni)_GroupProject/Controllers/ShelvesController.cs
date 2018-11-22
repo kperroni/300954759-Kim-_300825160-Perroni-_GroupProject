@@ -27,7 +27,7 @@ namespace _300954759_Kim__300825160_Perroni__GroupProject.Controllers
         }
 
         // GET api/<controller>/5
-        [HttpGet("{id}")]
+        [HttpGet("{id}", Name = "GetShelf")]
         public ActionResult<Shelf> GetById(int id)
         {
             var shelf = _context.Shelf.Find(id);
@@ -49,7 +49,7 @@ namespace _300954759_Kim__300825160_Perroni__GroupProject.Controllers
         }
 
         // PUT api/<controller>/5
-        [HttpPut("{id}")]
+        [HttpPut("{id}", Name = "GetShelf")]
         public IActionResult Update(int id, Shelf item)
         {
             var shelf = _context.Shelf.Find(id);
@@ -71,11 +71,19 @@ namespace _300954759_Kim__300825160_Perroni__GroupProject.Controllers
         public IActionResult Delete(int id)
         {
             var shelf = _context.Shelf.Find(id);
-            if (shelf == null)
+            var bookshelves = from bs in _context.Bookshelf
+                            where bs.ShelfId.Equals(id)
+                            select bs;
+            if (shelf == null && bookshelves == null)
             {
                 return NotFound();
             }
 
+            foreach (Bookshelf bookshelf in bookshelves)
+            {
+                _context.Bookshelf.Remove(bookshelf);
+            }
+             
             _context.Shelf.Remove(shelf);
             _context.SaveChanges();
 

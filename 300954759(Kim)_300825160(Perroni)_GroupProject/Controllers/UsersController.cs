@@ -30,7 +30,7 @@ namespace _300954759_Kim__300825160_Perroni__GroupProject.Controllers
         }
 
         // GET api/<controller>/5
-        [HttpGet("{id}")]
+        [HttpGet("{id}", Name = "GetUser")]
         public ActionResult<User> GetById(int id)
         {
             var user = _context.User.Find(id);

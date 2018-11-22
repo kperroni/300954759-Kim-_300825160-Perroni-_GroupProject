@@ -27,7 +27,7 @@ namespace _300954759_Kim__300825160_Perroni__GroupProject.Controllers
         }
 
         // GET api/<controller>/5
-        [HttpGet("{id}")]
+        [HttpGet("{id}", Name = "GetBookShelf")]
         public ActionResult<Bookshelf> GetById(int id)
         {
             var bookshelf = _context.Bookshelf.Find(id);
@@ -46,41 +46,6 @@ namespace _300954759_Kim__300825160_Perroni__GroupProject.Controllers
             _context.SaveChanges();
 
             return CreatedAtRoute("GetBookShelf", new { id = bookshelf.Id }, bookshelf);
-        }
-
-        // PUT api/<controller>/5
-        [HttpPut("{id}")]
-        public IActionResult Update(int id, Bookshelf item)
-        {
-            var bookshelf = _context.Bookshelf.Find(id);
-            if (bookshelf == null)
-            {
-                return NotFound();
-            }
-
-            bookshelf.ShelfId = item.ShelfId;
-            bookshelf.BookId = item.BookId;
-
-            _context.Bookshelf.Update(bookshelf);
-            _context.SaveChanges();
-
-            return NoContent();
-        }
-
-        // DELETE api/<controller>/5
-        [HttpDelete("{id}")]
-        public IActionResult Delete(int id)
-        {
-            var bookshelf = _context.Bookshelf.Find(id);
-            if (bookshelf == null)
-            {
-                return NotFound();
-            }
-
-            _context.Bookshelf.Remove(bookshelf);
-            _context.SaveChanges();
-
-            return NoContent();
         }
     }
 }
