@@ -4,6 +4,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using _300954759_Kim__300825160_Perroni__GroupProject.Models;
 using Microsoft.AspNetCore.Mvc;
+using System.Data.Entity;
+using System.Diagnostics;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -23,7 +25,14 @@ namespace _300954759_Kim__300825160_Perroni__GroupProject.Controllers
         [HttpGet]
         public ActionResult<List<Author>> GetAll()
         {
-            return _context.Author.ToList();
+            var authors = _context.Author.ToList();
+            foreach(Author a in authors)
+            {
+                a.Book = _context.Book.Where(s => s.AuthorId == a.Id).ToList();
+            }
+
+            return authors;
+
         }
 
         // GET api/<controller>/5
@@ -42,6 +51,7 @@ namespace _300954759_Kim__300825160_Perroni__GroupProject.Controllers
             {
                 return NotFound();
             }
+            author.Book = _context.Book.Where(s => s.AuthorId == author.Id).ToList();
             return author;
         }
 

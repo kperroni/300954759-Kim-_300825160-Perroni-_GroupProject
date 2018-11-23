@@ -19,7 +19,7 @@ namespace _300954759_Kim__300825160_Perroni__GroupProject.Models
         public int AuthorId { get; set; }
 
         public Author Author { get; set; }
-        public Genre Genre { get; set; }
+        public Genre Genre { get; set; } 
         public ICollection<Bookshelf> Bookshelf { get; set; }
     }
 }

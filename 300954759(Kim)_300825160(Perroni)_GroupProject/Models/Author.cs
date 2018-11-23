@@ -15,6 +15,6 @@ namespace _300954759_Kim__300825160_Perroni__GroupProject.Models
         public string LastName { get; set; }
         public string AreaOfInterest { get; set; }
 
-        public ICollection<Book> Book { get; set; }
+        public virtual ICollection<Book> Book { get; set; }
     }
 }

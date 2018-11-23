@@ -33,7 +33,10 @@ namespace _300954759_Kim__300825160_Perroni__GroupProject
             services.AddMvc( options => {
                 options.FormatterMappings.SetMediaTypeMappingForFormat("xml", "application/xml");
                 options.FormatterMappings.SetMediaTypeMappingForFormat("json", "application/json");
-            }).AddXmlSerializerFormatters();
+            }).AddJsonOptions(
+        options => options.SerializerSettings.ReferenceLoopHandling =
+        Newtonsoft.Json.ReferenceLoopHandling.Ignore
+    ).AddXmlSerializerFormatters(); 
 
             // register swagger generator
             services.AddSwaggerGen(options =>
