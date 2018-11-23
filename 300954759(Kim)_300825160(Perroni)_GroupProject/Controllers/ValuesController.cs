@@ -13,7 +13,7 @@ namespace _300954759_Kim__300825160_Perroni__GroupProject.Controllers
         [HttpGet]
         public IEnumerable<string> Get()
         {
-            return new string[] { "value1", "value2" };
+            return new string[] { "Index of API" };
         }
 
         // GET api/values/5

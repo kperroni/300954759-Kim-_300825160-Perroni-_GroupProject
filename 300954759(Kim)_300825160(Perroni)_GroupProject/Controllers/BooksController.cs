@@ -59,7 +59,7 @@ namespace _300954759_Kim__300825160_Perroni__GroupProject.Controllers
 
         // POST api/<controller>
            [HttpPost]
-           public ActionResult<Book> Create(Book book)
+           public ActionResult<Book> Create([FromBody]Book book)
            {
             _context.Book.Add(book);
             _context.SaveChanges();
@@ -68,7 +68,7 @@ namespace _300954759_Kim__300825160_Perroni__GroupProject.Controllers
 
         // PUT api/<controller>/5
         [HttpPut("{id}")]
-        public IActionResult Put(int id, Book book)
+        public IActionResult Put(int id, [FromBody]Book book)
         {
             var updateBook = _context.Book.Find(id);
             if (updateBook == null)

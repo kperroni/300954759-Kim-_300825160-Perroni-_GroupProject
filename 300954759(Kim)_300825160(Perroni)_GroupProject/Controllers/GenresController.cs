@@ -32,15 +32,8 @@ namespace _300954759_Kim__300825160_Perroni__GroupProject.Controllers
             return genres;
         }
 
-        // GET api/<controller>/5
-        [HttpGet("{id}")]
-        public string Get(int id)
-        {
-            return "value";
-        }
-
         [HttpGet("{id}", Name = "GetCreatedGenre")]
-        public ActionResult<Genre> GetById(long id)
+        public ActionResult<Genre> GetById(int id)
         {
             var genre = _context.Genre.Find(id);
             if (genre == null)
@@ -53,7 +46,7 @@ namespace _300954759_Kim__300825160_Perroni__GroupProject.Controllers
 
         // POST api/<controller>
         [HttpPost]
-        public IActionResult Create(Genre genre)
+        public IActionResult Create([FromBody]Genre genre)
         {
             _context.Genre.Add(genre);
             _context.SaveChanges();

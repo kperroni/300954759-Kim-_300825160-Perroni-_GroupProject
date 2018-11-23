@@ -36,15 +36,8 @@ namespace _300954759_Kim__300825160_Perroni__GroupProject.Controllers
         }
 
         // GET api/<controller>/5
-        [HttpGet("{id}")]
-        public string Get(int id)
-        {
-            return "value";
-        }
-
-        // GET api/<controller>/5
         [HttpGet("{id}", Name = "GetCreatedAuthor")]
-        public ActionResult<Author> GetById(long id)
+        public ActionResult<Author> GetById(int id)
         {
             var author = _context.Author.Find(id);
             if (author == null)
@@ -57,7 +50,7 @@ namespace _300954759_Kim__300825160_Perroni__GroupProject.Controllers
 
         // POST api/<controller>
         [HttpPost]
-        public IActionResult Create(Author author)
+        public IActionResult Create([FromBody]Author author)
         {
             _context.Author.Add(author);
             _context.SaveChanges();
