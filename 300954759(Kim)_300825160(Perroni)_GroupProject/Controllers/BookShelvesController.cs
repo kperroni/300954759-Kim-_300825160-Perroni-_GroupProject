@@ -40,12 +40,22 @@ namespace _300954759_Kim__300825160_Perroni__GroupProject.Controllers
 
         // POST api/<controller>
         [HttpPost]
-        public IActionResult Create(Bookshelf bookshelf)
+        public IActionResult Create([FromBody]Bookshelf bookshelf)
         {
             _context.Bookshelf.Add(bookshelf);
             _context.SaveChanges();
 
             return CreatedAtRoute("GetBookShelf", new { id = bookshelf.Id }, bookshelf);
+        }
+
+        // DELETE api/<controller>/5
+        [HttpDelete("{id}")]
+        public IActionResult Delete(int id)
+        {
+            var bookshelf = _context.Bookshelf.Find(id);
+            _context.Bookshelf.Remove(bookshelf);
+            _context.SaveChanges();
+            return NoContent();
         }
     }
 }

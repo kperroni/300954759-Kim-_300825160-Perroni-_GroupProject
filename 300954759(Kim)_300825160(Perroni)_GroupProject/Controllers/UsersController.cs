@@ -43,7 +43,7 @@ namespace _300954759_Kim__300825160_Perroni__GroupProject.Controllers
 
         // POST api/<controller>
         [HttpPost]
-        public IActionResult Create(User user)
+        public IActionResult Create([FromBody]User user)
         {
             _context.User.Add(user);
             _context.SaveChanges();

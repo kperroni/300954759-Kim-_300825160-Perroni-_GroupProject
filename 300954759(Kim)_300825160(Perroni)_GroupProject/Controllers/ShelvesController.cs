@@ -40,7 +40,7 @@ namespace _300954759_Kim__300825160_Perroni__GroupProject.Controllers
 
         // POST api/<controller>
         [HttpPost]
-        public IActionResult Create(Shelf shelf)
+        public IActionResult Create([FromBody]Shelf shelf)
         {
             _context.Shelf.Add(shelf);
             _context.SaveChanges();
@@ -50,7 +50,7 @@ namespace _300954759_Kim__300825160_Perroni__GroupProject.Controllers
 
         // PUT api/<controller>/5
         [HttpPut("{id}", Name = "GetShelf")]
-        public IActionResult Update(int id, Shelf item)
+        public IActionResult Update(int id, [FromBody]Shelf item)
         {
             var shelf = _context.Shelf.Find(id);
             if (shelf == null)
