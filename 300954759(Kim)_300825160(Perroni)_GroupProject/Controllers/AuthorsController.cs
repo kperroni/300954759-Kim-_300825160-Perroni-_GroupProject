@@ -57,17 +57,5 @@ namespace _300954759_Kim__300825160_Perroni__GroupProject.Controllers
 
             return CreatedAtRoute("GetCreatedAuthor", new { id = author.Id }, author);
         }
-
-        // PUT api/<controller>/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody]string value)
-        {
-        }
-
-        // DELETE api/<controller>/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
-        {
-        }
     }
 }
